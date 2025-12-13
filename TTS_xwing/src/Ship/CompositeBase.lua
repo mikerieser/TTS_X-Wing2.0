@@ -250,7 +250,7 @@ function GetAvailableMountPositions(args)
     end
 
     local ship_position = self.getPosition()
-    local ship_rotation = math.rad(self.GetRotation().y) * -1
+    local ship_rotation = math.rad(self.getRotation().y) * -1
     for location, position in pairs(mount_positions) do
         local transformed_position = Vector(
             ship_position.x + math.cos(ship_rotation) * position[1] - math.sin(ship_rotation) * position[2],
@@ -266,7 +266,7 @@ function GetMountingPosition(args)
     local turret_mount = args.mount or 'main'
     local mount_position = self.getTable('Data').mountingPoints[turret_mount] or { 0, 0 }
     local ship_position = self.getPosition()
-    local ship_rotation = math.rad(self.GetRotation().y) * -1
+    local ship_rotation = math.rad(self.getRotation().y) * -1
     return Vector(
         ship_position.x + math.cos(ship_rotation) * mount_position[1] - math.sin(ship_rotation) * mount_position[2],
         ship_position.y,
