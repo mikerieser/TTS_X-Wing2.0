@@ -1,57 +1,42 @@
 -- ~~~~~~
 -- Script by Eirik 'Flippster' Munthe
---
 -- ~~~~~~
-local RangeCheck = require("Device.RangeCheck")
 
--- Call bomb drop stick
+local BombBase = require("Device.Bomb.BombBase")
+
+local bomb = BombBase.new(self, {
+    default_range = 1,
+    update_range = 2,
+    delete_function_name = "DeleteRuler",
+    skip_default_menu = true,
+})
+
+local toggleRange1 = bomb.toggleFor(1)
+local toggleRange2 = bomb.toggleFor(2)
+
 function onDropped()
-    Global.call('API_BombTokenDrop', { token = self })
+    bomb.onDropped()
 end
 
-local spawnedRuler = nil
 function update()
-    if self.getDescription() == 'r' then
-        if ToggleRuler2() then
-            printToAll('Spawning ' .. self.getName() .. ' guide', { 0, 1, 1 })
-        end
-        self.setDescription('')
-    end
+    bomb.update()
 end
 
 function ToggleRuler1()
-    return ToggleRuler(1)
+    return toggleRange1()
 end
 
 function ToggleRuler2()
-    return ToggleRuler(2)
+    return toggleRange2()
 end
 
 function DeleteRuler()
-    if spawnedRuler then
-        spawnedRuler.destruct()
-        spawnedRuler = nil
-    end
-end
-
-function ToggleRuler(range)
-    local didSpawn
-    spawnedRuler, spawnedRulerRange, didSpawn = RangeCheck.toggleBombRuler(self, spawnedRuler, range, spawnedRulerRange, {
-        removeFunction = "DeleteRuler"
-    })
-    return didSpawn
+    return bomb.deleteRuler()
 end
 
 function onLoad()
-    if self.getName() == 'AoE Bomb source' then
-        self.setPosition({ 0, -3, 18.28 })
-        self.setRotation({ 0, 0, 0 })
-        self.lock()
-        self.tooltip = false
-        self.interactable = false
-        update = nil
-    else
-        self.addContextMenuItem("Toggle Range 1", ToggleRuler1, false)
-        self.addContextMenuItem("Toggle Range 2", ToggleRuler2, false)
-    end
+    bomb.onLoad({
+        { label = "Toggle Range 1", fn = ToggleRuler1 },
+        { label = "Toggle Range 2", fn = ToggleRuler2 },
+    })
 end
