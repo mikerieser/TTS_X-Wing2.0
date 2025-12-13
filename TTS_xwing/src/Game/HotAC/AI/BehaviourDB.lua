@@ -78,7 +78,7 @@ move_table: A table containing the ship's move data, organised into arcs and
 -- This is the upgrade of the HotAC-style AI to X-wing v2, ultimately published
 -- by Justin Gan. The AIs cover all three Rebellion-era factions and are made
 -- for the broader Flight Group Alpha ruleset.
--- see: https://www.facebook.com/groups/872507722883025/permalink/1970166016450518/
+-- see: https://www.facebook.com/groups/872507722883025/
 BehaviourDB.rule_sets[1] = {}
 BehaviourDB.rule_sets[1].name = 'XW-v2-FGA-v7-Gan-2020-04-07'
 BehaviourDB.rule_sets[1].usesBullseyeArc = true
