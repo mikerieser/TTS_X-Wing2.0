@@ -238,7 +238,7 @@ ModelDB.data = {
             },
             ['Quadjumper'] = {
                 arcType = 'P',
-                meshes = { 'http://cloud-3.steamusercontent.com/ugc/946202455626449918/D2930E1A7AFE3B73360F4CABEA338453BCB14087/aasa', 'http://cloud-3.steamusercontent.com/ugc/946202455626449918/D2930E1A7AFE3B73360F4CABEA338453BCB14087/', 'http://cloud-3.steamusercontent.com/ugc/82591194029099470/6F4716CB145832CC47231B4A30F26153C90916AE/', 'http://cloud-3.steamusercontent.com/ugc/89352927637054865/CA43D9DEC1EF65DA30EC657EC6A9101E15905C78/' }
+                meshes = { 'http://cloud-3.steamusercontent.com/ugc/946202455626449918/D2930E1A7AFE3B73360F4CABEA338453BCB14087/', 'http://cloud-3.steamusercontent.com/ugc/946202455626449918/D2930E1A7AFE3B73360F4CABEA338453BCB14087/', 'http://cloud-3.steamusercontent.com/ugc/82591194029099470/6F4716CB145832CC47231B4A30F26153C90916AE/', 'http://cloud-3.steamusercontent.com/ugc/89352927637054865/CA43D9DEC1EF65DA30EC657EC6A9101E15905C78/' }
             },
             ['Protectorate Starfighter'] = {
                 arcType = 'P',

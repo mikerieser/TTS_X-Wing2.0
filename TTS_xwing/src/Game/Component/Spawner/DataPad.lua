@@ -343,7 +343,7 @@ function scenarioSoC()
     local red_blue_mat = getObjectFromGUID('0db84a')
     red_blue_mat.call("clearScenario", nil)
     local custom = red_blue_mat.getCustomObject()
-    custom.diffuse = 'http://i.imgur.com/8tDK0x8.png'
+    custom.diffuse = 'https://i.imgur.com/8tDK0x8.png'
     red_blue_mat.setCustomObject(custom)
     red_blue_mat = red_blue_mat.reload()
     Wait.condition(function() red_blue_mat.call('SelectSoC') end,

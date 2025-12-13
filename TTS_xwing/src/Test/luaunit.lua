@@ -234,7 +234,7 @@ local function sortedPairs(tbl)
     -- Equivalent of the pairs() function on tables. Allows to iterate in
     -- sorted order. As required by "generic for" loops, this will return the
     -- iterator (function), an "invariant state", and the initial control value.
-    -- (see http://www.lua.org/pil/7.2.html)
+    -- (see https://www.lua.org/pil/7.2.html)
     return sortedNext, { t = tbl, sortedIdx = __genSortedIndex(tbl) }, nil
 end
 M.private.sortedPairs = sortedPairs
@@ -2056,7 +2056,7 @@ end
 ----------------------------------------------------------------
 
 -- A common "base" class for outputters
--- For concepts involved (class inheritance) see http://www.lua.org/pil/16.2.html
+-- For concepts involved (class inheritance) see https://www.lua.org/pil/16.2.html
 
 local genericOutput = { __class__ = 'genericOutput' } -- class
 local genericOutput_MT = { __index = genericOutput }  -- metatable

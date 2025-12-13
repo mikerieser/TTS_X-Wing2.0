@@ -29,7 +29,7 @@ local rulersState = 0 -- 0: none, 1: roid setup, 2: ship setup
 local rulerData = {}
 rulerData.mesh = 'http://pastebin.com/raw.php?i=MLLajD97'
 rulerData.collider = 'http://pastebin.com/raw.php?i=MLLajD97'
-rulerData.diffuse = 'http://i.imgur.com/46CSDvj.jpg'
+rulerData.diffuse = 'https://i.imgur.com/46CSDvj.jpg'
 rulerData.material = 1
 
 local roidRot = {
