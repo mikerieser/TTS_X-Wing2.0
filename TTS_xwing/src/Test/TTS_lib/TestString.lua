@@ -187,4 +187,30 @@ function assertTrimOk(s, expected)
     lu.assertEquals(res, expected, "trim() returned unexpected content")
 end
 
+-- === :split() ===
+
+function T:test_split_with_commas()
+    local list = string.split("apple,banana,orange", ",")
+    lu.assertEquals({ "apple", "banana", "orange" }, list)
+end
+
+function T:test_split_and_trim_big_string_with_commas()
+    local long_str = "apple, banana, cabbage,daikon,eggplant,fig,grape,honey,ice,jicama,orange"
+    local expected = { "apple", "banana", "cabbage", "daikon", "eggplant", "fig", "grape", "honey", "ice", "jicama",
+        "orange" }
+    lu.assertEquals(expected, long_str:split(",", true))
+end
+
+function T:test_split_with_spaces()
+    local words = ("Hello world Lua"):split(" ")
+
+    lu.assertEquals({ "Hello", "world", "Lua" }, words)
+end
+
+function T:test_split_with_empty()
+    local words = (""):split("")
+
+    lu.assertEquals({ "" }, words)
+end
+
 return T
