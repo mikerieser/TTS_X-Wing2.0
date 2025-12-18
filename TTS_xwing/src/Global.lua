@@ -221,10 +221,15 @@ end
 -- If it is return its type identifier, if not return nil
 XW_cmd.CheckCommand = function(cmd)
     -- Trim whitespaces
-    cmd = string.lower(cmd:match("^%s*(.-)%s*$"))
+    cmd = cmd:lower():trim()
+
     local type = nil
     if XW_cmd.commandLUT[cmd] then
         return XW_cmd.commandLUT[cmd]
+    end
+    if cmd:startswith('strike') then
+        XW_cmd.commandLUT[cmd] = 'StrikeAI'
+        return 'StrikeAI'
     end
     -- Resolve command type
     for k, pat in pairs(XW_cmd.ValidCommands) do
@@ -289,7 +294,7 @@ end
 -- Return false if object cannot process commands right now or command was invalid
 XW_cmd.Process = function(obj, cmd)
     -- Trim whitespaces
-    cmd = cmd:match("^%s*(.-)%s*$")
+    cmd = cmd:trim()
 
     -- Resolve command type
     local type = XW_cmd.CheckCommand(cmd)
@@ -447,9 +452,9 @@ end
 AIModule.current_move.Reset()
 
 
-
 -- Possible commands supported by the AI module
-XW_cmd.AddCommand('ai', 'AI')                    -- Enables the AI on the selected ship
+XW_cmd.AddCommand('ai', 'AI') -- Enables the AI on the selected ship
+-- Strike command handled via prefix short-circuit in CheckCommand to avoid regex costs on long lists
 XW_cmd.AddCommand('[sS]trike[ ]*.*', 'StrikeAI') -- List of Strike AI Targets
 
 -- Description function to add the AI functions to a ship
@@ -472,30 +477,32 @@ end
 AIModule.EnableStrikeAI = function(ship, cmd)
     --  cmd = "strike guid1,guid2,name3,name4"
     AIModule.EnableAI(ship, 'AI')
-    local pattern = '[sS]trike[ ]*(.*)' -- Captures the list after 'strike '
+    local infoColor = Color.Yellow
+    if type(cmd) ~= "string" then
+        printToAll("Invalid format or no targets specified.", infoColor)
+        ship.setTable('StrikeTargets', nil)
+        return
+    end
 
-    local targetsString = cmd:match(pattern)
-    if targetsString then
-        local targets = {}
-        for arg in targetsString:gmatch("([^,]+)") do
-            -- Split by comma
-            local target = arg:trim()
-            if target ~= "" then
-                table.insert(targets, target)
-            end
-        end
+    cmd = cmd:trim():lower()
+    if not cmd:startswith('strike') then
+        printToAll("Invalid format or no targets specified.", infoColor)
+        ship.setTable('StrikeTargets', nil)
+        return
+    end
 
-        -- Check if any valid targets were added
-        if #targets > 0 then
-            ship.setTable('StrikeTargets', targets)
-            printToAll(tostring(ship.getName()) .. " has Strike Target list: " .. table.concat(targets, ", "),
-                Color.Yellow)
-        else
-            printToAll(tostring(ship.getName()) .. " has no Strike Targets, reverting to Attack AI.", Color.Yellow)
-            ship.setTable('StrikeTargets', nil)
-        end
+    local targetsString = cmd:sub(7):trim()
+    local targets = {}
+    for _, target in ipairs(targetsString:split(",", true)) do
+        if target ~= "" then table.insert(targets, target) end
+    end
+
+    if #targets > 0 then
+        ship.setTable('StrikeTargets', targets)
+        printToAll(tostring(ship.getName()) .. " has Strike Target list: " .. table.concat(targets, ", "),
+            infoColor)
     else
-        printToAll("Invalid format or no targets specified.", Color.Yellow)
+        printToAll(tostring(ship.getName()) .. " has no Strike Targets, reverting to Attack AI.", infoColor)
         ship.setTable('StrikeTargets', nil)
     end
 end
@@ -5745,7 +5752,7 @@ end
 addidionalCollisionMargin_mm = -0.5
 -- ~~~~~~
 
--- General idea here: https://www.gamedev.net/page/resources/_/technical/game-programming/2d-rotated-rectangle-collision-r2604
+-- General idea here: https://www.gamedev.net/articles/programming/general-and-gameplay-programming/2d-rotated-rectangle-collision-r2604/
 -- Originally written by Flolania and Hera Verigo, slightly refitted here
 
 -- Return corners of ship base in a {xPos, zPos} table format
