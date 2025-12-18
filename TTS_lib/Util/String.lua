@@ -18,7 +18,34 @@ end
 -- Check if string contains argument anywhere in it (no regex)
 if not string.contains then
     string.contains = function(str, query)
+        if query == nil then
+            return false
+        end
         return (str:find(query, 1, true) ~= nil)
+    end
+end
+
+-- Split a string by a plain-text separator (no patterns)
+if not string.split then
+    string.split = function(str, sep, trimParts)
+        if type(sep) ~= "string" or sep == "" then
+            return { trimParts and str:trim() or str }
+        end
+        local out = {}
+        local start = 1
+        local sepLen = #sep
+        while true do
+            local idx = str:find(sep, start, true)
+            if not idx then
+                local piece = str:sub(start)
+                table.insert(out, trimParts and piece:trim() or piece)
+                break
+            end
+            local piece = str:sub(start, idx - 1)
+            table.insert(out, trimParts and piece:trim() or piece)
+            start = idx + sepLen
+        end
+        return out
     end
 end
 
