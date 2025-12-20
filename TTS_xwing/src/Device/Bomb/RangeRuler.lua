@@ -90,8 +90,6 @@ function RangeRuler.new(owner, opts)
         bubble.interactable = false
         state.bubble = bubble
 
-        printToAll("halfHeight = " .. halfHeight, Color.Pink)
-
         clearButton()
         local removeButton = {
             click_function = deleteFnName,
@@ -143,13 +141,12 @@ function RangeRuler.new(owner, opts)
                 printToAll("No ships within range " .. tostring(range) .. " of " .. owner.getName(), reportColor)
             else
                 table.sort(hits, function(a, b) return a.distance_mm < b.distance_mm end)
-                printToAll("Checking for ships within range " .. tostring(range) .. " of " .. owner.getName() .. ":",
-                    reportColor)
+                printToAll("Checking for ships within range " .. tostring(range) .. " of " .. owner.getName() .. ":", reportColor)
+                local debug = Global.getVar("print_debug")
+
                 for _, hit in ipairs(hits) do
-                    local distanceStr = string.format("%.0f", hit.distance_mm)
-                    printToAll(
-                        " - " .. hit.name .. " at range " .. tostring(hit.range_band) .. " (" .. distanceStr .. " mm)",
-                        reportColor)
+                    local mm = debug and (" (%.0f mm)"):format(hit.distance_mm) or ""
+                    printToAll((" - %s at range %s%s"):format(hit.name, hit.range_band, mm), reportColor)
                 end
             end
         end
