@@ -37,6 +37,9 @@ Dim.mm_largeBase = Dim.mm_baseSize.large
 ----------------------------------------
 -- Standard X-Wing Maneuver Templates --
 ----------------------------------------
+----- Standard range band length (range 1).
+Dim.range_1_mm = 100
+Dim.range_1_igu = Dim.Convert_mm_igu(Dim.range_1_mm)
 
 Dim.XWingTemplates = {
     straight = { 40, 80, 120, 160, 200 }, -- Speed to millimeters
@@ -50,7 +53,7 @@ Dim.mm_upgrade_height = 63
 Dim.mm_pilot_width = 63.5
 Dim.mm_pilot_height = 88
 
-Dim.mm_ship_scale = vector(0.629, 0.629, 0.629)
+Dim.mm_ship_scale = Vector(0.629, 0.629, 0.629)
 
 Dim.mm_cardSize = {
     upgrade = { width = 41, height = 63 },
