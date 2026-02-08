@@ -2057,8 +2057,6 @@ masterPilotDB[633] = {
     ship_type = 'tieskstriker',
     cost = 32,
     slot = { 21, 1, 16, 12, 14 },
-    card =
-    'http://images-cdn.fantasyflightgames.com/filer_public/98/a8/98a8c9cc-53b2-4b57-ac0b-96da7c064740/swz66_vagabond.png',
     init = 2,
     texture = 'blue',
     actSet = { 'F', 'E', 'BR', 'Ail', 'B' }
@@ -4035,7 +4033,6 @@ masterPilotDB[418] = {
     cost = 61,
     slot = { 21, 1, 19, 14, 18, 15, 10, 99 },
     Charge = 1,
-    card = 'http://sb-cdn.fantasyflightgames.com/card_images/en/14c504c0815213a66010c4013d9296ee.png',
     init = 6,
     texture = 'blackone',
     actSet = { 'F', 'TL', 'B' }
@@ -7488,7 +7485,7 @@ masterPilotDB[962] = {
     init = 2,
     texture = 'gold',
     actSet = { 'F', 'TL', 'BR', 'B' },
-    arcs = { fixed = { range = 3, type = { 'front' } }, turret = { main = { name = 'ion cannon turret', range = 2, type = { 'singleturret' } } } },
+    arcs = { fixed = { range = 3, type = { 'front' } }, turret = { main = { name = 'dorsal turret', range = 2, type = { 'singleturret' } } } },
     standardized_loadout = true,
     standardized_upgrades = {
         { name = 'Dorsal Turret',         charge = 0 },
@@ -7508,7 +7505,7 @@ masterPilotDB[963] = {
     init = 4,
     texture = 'gold',
     actSet = { 'F', 'TL', 'BR', 'B' },
-    arcs = { fixed = { range = 3, type = { 'front' } }, turret = { main = { name = 'ion cannon turret', range = 2, type = { 'singleturret' } } } },
+    arcs = { fixed = { range = 3, type = { 'front' } }, turret = { main = { name = 'dorsal turret', range = 2, type = { 'singleturret' } } } },
     standardized_loadout = true,
     standardized_upgrades = {
         { name = 'Dorsal Turret',         charge = 0 },
@@ -8799,6 +8796,7 @@ masterPilotDB[1036] = {
     init = 4,
     texture = 'horton',
     actSet = { 'F', 'TL', 'BR' },
+    arcs = { fixed = { range = 3, type = { 'front' } }, turret = { main = { name = 'ion cannon turret', range = 2, type = { 'singleturret' } } } },
     standardized_loadout = true,
     standardized_upgrades = {
         { name = 'Ion Cannon Turret', charge = 0 },
