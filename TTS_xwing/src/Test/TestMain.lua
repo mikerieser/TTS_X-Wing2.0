@@ -19,9 +19,10 @@ function runTests()
     lu.LuaUnit.outputType.chat.format = "TEXT"
     lu.LuaUnit.outputType.chat.verbosity = lu.VERBOSITY_LOW
     -- lu.LuaUnit.outputType.log = false
-    lu.LuaUnit:run()        -- runs the tests configured here.
-    -- Global.call("runTests", { self.guid }) -- runs the tests configured in the global script.
-    Global.call("runTests") -- runs the tests configured in the global script.
+    lu.LuaUnit:run() -- runs the tests configured here.
+    if Global.getVar("runTests") ~= nil then
+        Global.call("runTests", self.getGUID()) -- runs the optional Global suite.
+    end
 end
 
 function onDrop()
