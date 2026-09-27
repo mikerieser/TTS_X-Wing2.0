@@ -11,6 +11,16 @@ local Dim = {}
 -- 1mm = 0.03612igu
 Dim.mm_igu_ratio = 0.03637
 
+-- Convert argument from MILLIMETERS to IN-GAME UNITS
+function Dim.Convert_mm_igu(millimeters)
+    return millimeters * Dim.mm_igu_ratio
+end
+
+-- Convert argument from IN-GAME UNITS to MILLIMETERS
+function Dim.Convert_igu_mm(in_game_units)
+    return in_game_units / Dim.mm_igu_ratio
+end
+
 -- 40mm = 1.445igu
 -- (s1 length / small base size)
 
@@ -62,15 +72,5 @@ Dim.mm_cardSize = {
 
 -- Millimeter dimension for dial cards
 Dim.mm_dialSize = 54
-
--- Convert argument from MILLIMETERS to IN-GAME UNITS
-function Dim.Convert_mm_igu(millimeters)
-    return millimeters * Dim.mm_igu_ratio
-end
-
--- Convert argument from IN-GAME UNITS to MILLIMETERS
-function Dim.Convert_igu_mm(in_game_units)
-    return in_game_units / Dim.mm_igu_ratio
-end
 
 return Dim
