@@ -1,6 +1,7 @@
 local lu = require("Test.luaunit_tts")
 
 local testSuite = {
+    TestPlaymatAnchor = require("Test.Game.Playmat.TestAnchor"),
     -- TestFreighter = require("Test.HotAC.Setup.TestTransportFreighter"),
     -- TestRulerSet = require("Test.Game.Table.TestRulerSet"),
     TestGlobalXWCmdBarrelRoll          = require("Test.Game.Mechanic.Global_XW_cmd_BarrelRoll_Test"),
