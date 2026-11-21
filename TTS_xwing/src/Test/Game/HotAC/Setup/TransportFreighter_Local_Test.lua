@@ -1,4 +1,5 @@
--- Run from the repository root with: lua tests/transport_freighter_test.lua
+-- Run from the repository root with:
+-- lua TTS_xwing/src/Test/Game/HotAC/Setup/TransportFreighter_Local_Test.lua
 -- The freighter is an object script, so these tests load it in an isolated
 -- environment and model only the TTS bag and Wait behavior used below.
 package.path = "./?.lua;./TTS_xwing/src/?.lua;" .. package.path
