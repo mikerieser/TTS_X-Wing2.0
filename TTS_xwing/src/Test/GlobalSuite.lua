@@ -1,7 +1,9 @@
 local lu = require("Test.luaunit_tts")
 
 local testSuite = {
-    -- TestFreighter = require("Test.HotAC.Setup.TestTransportFreighter"),
+    -- These integration tests spawn isolated copies of the freighter in Extra Assets.
+    TestTransportFreighterPack          = require("Test.Game.HotAC.Setup.TestTransportFreighterPack"),
+    TestTransportFreighterDeploy        = require("Test.Game.HotAC.Setup.TestTransportFreighterDeploy"),
     -- TestRulerSet = require("Test.Game.Table.TestRulerSet"),
     TestGlobalXWCmdBarrelRoll          = require("Test.Game.Mechanic.Global_XW_cmd_BarrelRoll_Test"),
     TestGlobalXWCmdCoreMove            = require("Test.Game.Mechanic.Global_XW_cmd_CoreMove_Test"),
