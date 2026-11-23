@@ -10,7 +10,8 @@ For the LuaUnit-TTS integration tests:
 
 1. Update the Transport Freighter stored in the Extra Assets bag from the current
    `Game/HotAC/Setup/TransportFreighter.lua`. Leave it empty and in the bag;
-   no freighter needs to be placed on the table.
+   no freighter needs to be placed on the table. The fixture clones the script
+   saved inside that bag, so updating a separate freighter on the table is not enough.
 2. Enable `require("Test.GlobalSuite")` at the end of `Global.lua`, bundle,
    and use Save & Play. The transport tests are registered in `GlobalSuite.lua`.
 3. Drop the Checker with `TestMain.lua` attached, and inspect the Global suite

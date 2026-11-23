@@ -23,6 +23,9 @@ local function findFreighterTemplate()
         if data.GUID == found[1].guid then
             lu.assertEquals(0, #(data.ContainedObjects or {}),
                 "The stored Transport Freighter must be empty; test cleanup destroys its copy")
+            lu.assertTrue(type(data.LuaScript) == "string"
+                and data.LuaScript:find("getObjectBottomY", 1, true) ~= nil,
+                "The Transport Freighter inside Extra Assets has an outdated script; update the stored object from Game/HotAC/Setup/TransportFreighter.lua")
             return assetBag, found[1].guid, data
         end
     end
@@ -81,6 +84,11 @@ end
 
 function Fixture:loadState(state)
     self.bag.call("onLoad", JSON.encode(state))
+    local loaded = self:state()
+    lu.assertEquals(state.transportedCargo, loaded.transportedCargo,
+        "The test freighter did not load the requested cargo manifest")
+    lu.assertEquals(state.excludeList, loaded.excludeList,
+        "The test freighter did not load the requested exclusion list")
 end
 
 function Fixture:state()
